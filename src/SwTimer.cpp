@@ -7,27 +7,10 @@
 
 #include "SwTimer.h"
 
-SwTimer::SwTimer() : _time(0),
-                     _timerRunning(false),
-                     _timerEnabled(false),
-                     _timerExeeded(false)
-{
-
-}
-
-SwTimer::SwTimer(boolean activationStatus) : _time(0),
-                                              _timerRunning(false),
-                                              _timerEnabled(activationStatus),
-                                              _timerExeeded(false)
-{
-
-}
-
-
-SwTimer::SwTimer(boolean activationStatus, uint32_t time) : _time(time),
-                                                          _timerRunning(false),
-                                                          _timerEnabled(activationStatus),
-                                                          _timerExeeded(false)
+SwTimer::SwTimer(uint32_t time, boolean timer_enable = true) : m_time(time),
+                                                          m_timerRunning(false),
+                                                          m_timerEnabled(timer_enable),
+                                                          m_timerExeeded(false)
 {
 
 }
@@ -41,10 +24,10 @@ SwTimer::~SwTimer()
 
 void SwTimer::start(void)
 {
-   if(_timerRunning == false && _timerEnabled == true)
+   if(m_timerRunning == false && m_timerEnabled == true)
    {
-      _currentTime = millis() + _time;
-      _timerRunning = true;
+      m_currentTime = GET_TIME() + m_time;
+      m_timerRunning = true;
    }
    return;
 }
@@ -52,29 +35,29 @@ void SwTimer::start(void)
 
 boolean SwTimer::isExeeded(void)
 {
-   if(_timerRunning == true && _timerEnabled == true)
+   if(m_timerRunning == true && m_timerEnabled == true)
    {
-      if(millis() >= _currentTime)
+      if(GET_TIME() >= m_currentTime)
       {
-         _timerExeeded = true;
-         _timerRunning = false;
+         m_timerExeeded = true;
+         m_timerRunning = false;
       }
    }
-   return _timerExeeded;
+   return m_timerExeeded;
 }
 
 
 void SwTimer::enable(void)
 {
-   _timerEnabled = true;
-   _timerExeeded = false;
+   m_timerEnabled = true;
+   m_timerExeeded = false;
    return;
 }
 
 void SwTimer::disable(void)
 {
-   _timerEnabled = false;
-   _timerExeeded = false;
+   m_timerEnabled = false;
+   m_timerExeeded = false;
    return;
 }
 
@@ -89,7 +72,7 @@ void SwTimer::setTime(uint32_t time)
 {
    if(time > 0)
    {
-      _time = time;
+      m_time = time;
    }
    return;
 }

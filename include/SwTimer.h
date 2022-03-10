@@ -5,45 +5,48 @@
  *      Author: AP02
  */
 
-#ifndef _SWTIMER_H_
-#define _SWTIMER_H_
-#include "Software/SoftwareConfig.h"
+#ifndef SWTIMER_H
+#define SWTIMER_H
 
-#if defined(SW_TIMER_ENABLE)
-
-#if defined(ARDUINO) && ARDUINO >= 100
+#if defined(ARDUINO)
 #include "Arduino.h"
+
+#define GET_TIME() millis()
+
+
+
 #else
-#include "WProgram.h"
+#include "stdint.h"
+
+#define GET_TIME()      
+
 #endif
 
 
 class SwTimer
 {
    public:
-      SwTimer();
-      SwTimer(boolean activationStatus);
-      SwTimer(boolean activationStatus, uint32_t time);
+ 
+      SwTimer(uint32_t time, boolean timer_enable = true);
       virtual ~SwTimer();
       void start(void);
       void setTime(uint32_t time);
       void restart(uint32_t time = 0);
       void enable(void);
       void disable(void);
-      boolean isRunning(void) {return _timerRunning;}
-      boolean isEnabled(void) {return _timerEnabled;}
+      boolean isRunning(void) {return m_timerRunning;}
+      boolean isEnabled(void) {return m_timerEnabled;}
       boolean isExeeded(void);
 
 
    private:
-      uint32_t _time;
-      uint32_t _currentTime;
-      boolean _timerRunning;
-      boolean _timerEnabled;
-      boolean _timerExeeded;
+      uint32_t m_time;
+      uint32_t m_currentTime;
+      boolean m_timerRunning;
+      boolean m_timerEnabled;
+      boolean m_timerExeeded;
 
 
 };
 
-#endif
 #endif /*_SWTIMER_H_ */
