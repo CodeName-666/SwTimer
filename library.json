@@ -1,12 +1,12 @@
 {
-  "name": "Buffer",
-  "version": "1.0.1",
-  "description": "Small library with template based FIFO and Ringbuffer",
-  "keywords": "Fifo Buffer, Ringbuffer",
+  "name": "SwTimer",
+  "version": "1.0.0",
+  "description": "Simple software timer",
+  "keywords": "Timer, Software Timer, SW Timer",
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/CodeName-666/Buffer.git"
+    "url": "https://github.com/CodeName-666/SwTimer"
   },
   "authors":
   [
