@@ -7,7 +7,7 @@
 
 #include "SwTimer.h"
 
-SwTimer::SwTimer(uint32_t time, boolean timer_enable = true) : m_time(time),
+SwTimer::SwTimer(uint32_t time, boolean timer_enable) :   m_time(time),
                                                           m_timerRunning(false),
                                                           m_timerEnabled(timer_enable),
                                                           m_timerExeeded(false)

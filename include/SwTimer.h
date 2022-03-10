@@ -9,20 +9,15 @@
 #define SWTIMER_H
 
 #if defined(ARDUINO)
-#include "Arduino.h"
-
-#ifndef GET_TIME()
-#define GET_TIME() millis()
-#endif
-
-
+   #include "Arduino.h"
+   #ifndef GET_TIME
+   #define GET_TIME() millis()
+   #endif
 #else
-
-#include "stdint.h"
-#ifndef GET_TIME()
-#warning "Function Macro GET_TIME has to be defined
-#endif   
-
+   #include "stdint.h"
+   #ifndef GET_TIME()
+   #warning "Function Macro GET_TIME has to be defined"
+   #endif   
 #endif
 
 
@@ -30,7 +25,7 @@ class SwTimer
 {
    public:
  
-      SwTimer(uint32_t time, boolean timer_enable = true);
+      SwTimer(uint32_t time = 0, boolean timer_enable = true);
       virtual ~SwTimer();
       void start(void);
       void setTime(uint32_t time);
