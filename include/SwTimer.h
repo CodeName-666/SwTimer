@@ -11,14 +11,17 @@
 #if defined(ARDUINO)
 #include "Arduino.h"
 
+#ifndef GET_TIME()
 #define GET_TIME() millis()
-
+#endif
 
 
 #else
-#include "stdint.h"
 
-#define GET_TIME()      
+#include "stdint.h"
+#ifndef GET_TIME()
+#warning "Function Macro GET_TIME has to be defined
+#endif   
 
 #endif
 
